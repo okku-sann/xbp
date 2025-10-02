@@ -23,19 +23,21 @@ logotohome img{
 /* ========== common ========== */
 html, body {
 	font-size: 16px;
-	font-family: sans-serif;
+	font-family: 'klee';
 	color: #393939;
     margin-left: 15px;
     margin-bottom: 40px;
-	background: #efefef;
+	background: #e6e6fa;
 }
 h1{
     text-indent: 0em;
 }
-h2{
-    margin-left: 1em;
-    margin-top: 1em;
+/* style.css */
+h2 {
+  color: red;
+  text-align: center;
 }
+
 h3{
     margin-left: 2em;
 }
