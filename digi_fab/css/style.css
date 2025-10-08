@@ -21,34 +21,14 @@ logotohome img{
 
 
 /* ========== common ========== */
-html, body {
-	font-size: 16px;
-	font-family: sans-serif;
-	color: #393939;
-    margin-left: 15px;
-    margin-bottom: 40px;
-	background: #efefef;
+body {
+  background: linear-gradient(45deg, #ffffff, #e87f7d, #ff007a);
+  background-size: 200%;
+  animation: gradientShift 10s ease infinite;
+  color: #black;
 }
-h1{
-    text-indent: 0em;
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
-h2{
-    margin-left: 1em;
-    margin-top: 1em;
-}
-h3{
-    margin-left: 2em;
-}
-div{
-    margin-top: 1em;
-    margin-left: 3em;
-}
-p{
-    margin-left: 3em;
-}
-span.blackback{
-    text-indent: 3em;
-    background: #393939;
-    color: #efefef;
-}
-
