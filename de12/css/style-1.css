@@ -1,0 +1,167 @@
+/* 和モダンCSS */
+:root {
+  /* 和モダンなカラーパレット */
+  --primary-color: #2E2E2E; /* 墨黒 */
+  --secondary-color: #F4F1DE; /* 淡い和紙ベージュ */
+  --accent-color: #1A3C34; /* 深緑 */
+  --text-color: #333333; /* 濃いグレー */
+  --border-color: #D9D9D9; /* 薄いグレー */
+}
+
+/* 全体のリセットと基本設定 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Noto Serif JP', serif; /* 和風の明朝体フォント */
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+
+/* ヘッダー */
+header {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  padding: 20px;
+  text-align: center;
+  border-bottom: 3px solid var(--accent-color);
+}
+
+header h1 {
+  font-size: 2.5rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+}
+
+/* ナビゲーションメニュー */
+nav {
+  background-color: var(--secondary-color);
+  padding: 15px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+nav a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: var(--accent-color);
+}
+
+/* メインコンテンツ */
+main {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #FFFFFF; /* 白で清潔感 */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  font-size: 250%;
+}
+.container {
+  overflow: hidden; /* floatの影響をクリア */
+}
+
+.container img {
+  float: left;
+  margin-right: 25px;
+}
+
+/* 和風のカードデザイン */
+.card {
+  background-color: var(--secondary-color);
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  padding: 20px;
+  margin: 20px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('https://example.com/washi-pattern.png') repeat; /* 和紙風テクスチャ */
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+.card h2 {
+  font-size: 1.8rem;
+  color: var(--accent-color);
+  margin-bottom: 10px;
+}
+
+/* ボタン */
+button, .btn {
+  background-color: var(--accent-color);
+  color: var(--secondary-color);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover, .btn:hover {
+  background-color: #2A5C4E; /* 少し明るい深緑 */
+}
+
+/* フッター */
+footer {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  text-align: center;
+  padding: 15px;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+/* 和柄の背景（市松模様） */
+.ichimatsu-bg {
+  background-image: linear-gradient(45deg, var(--primary-color) 25%, transparent 25%),
+                    linear-gradient(-45deg, var(--primary-color) 25%, transparent 25%),
+                    linear-gradient(45deg, transparent 75%, var(--primary-color) 75%),
+                    linear-gradient(-45deg, transparent 75%, var(--primary-color) 75%);
+  background-size: 20px 20px;
+  opacity: 0.2;
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 2rem;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  main {
+    margin: 20px;
+    padding: 15px;
+  }
+}
