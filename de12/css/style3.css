@@ -1,0 +1,197 @@
+/* 全体のスタイル */
+body {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2c3e50 100%);
+  color: #e0e0e0;
+  font-family: 'Roboto', 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* コンテナ */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* ヘッダー */
+header {
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  padding: 15px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* ナビゲーション */
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+nav ul li a {
+  color: #00d4ff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+  color: #ff007a;
+}
+
+/* ボタンのラッパー（中央配置用） */
+.button-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+/* ボタン */
+button, .btn {
+  background: linear-gradient(45deg, #00d4ff, #ff007a);
+  border: none;
+  padding: 12px 24px;
+  border-radius: 25px;
+  color: #fff;
+  font-size: 30px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  box-sizing: border-box;
+}
+
+button:hover, .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 212, 255, 0.5);
+}
+
+/* カードコンテナ */
+.card-container {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* 観測対象の例カード用の2×2グリッド */
+.card-container.example-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2列 */
+  gap: 20px; /* カード間の間隔 */
+  max-width: 840px; /* カード2つ分（400px×2＋間隔20px）を考慮 */
+  margin: 20px auto; /* 中央配置 */
+}
+
+/* カード */
+.card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 40px; /* 内側余白を維持 */
+  margin: 0; /* グリッド内ではマージンをリセット */
+  width: calc(33.33% - 20px); /* 3列表示で横並び */
+  min-height: 400px; /* 縦の長さを維持 */
+  max-width: 400px; /* 最大幅を制限 */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-sizing: border-box;
+  overflow: hidden; /* 画像のはみ出し防止 */
+}
+
+/* 観測方法と観測対象の例カードのスタイル */
+.card.observation-method {
+  width: 100%; /* 横幅を最大に */
+  max-width: 800px; /* 横に長く、制限を設ける */
+  margin: 20px auto; /* 中央配置でバランス調整 */
+  padding: 40px; /* 内側余白を他のカードと統一 */
+  background: rgba(255, 255, 255, 0.1); /* 少し明るい背景で強調 */
+}
+
+/* 観測対象の例カード（グリッド内） */
+.card-container.example-grid .card.observation-method {
+  max-width: 400px; /* グリッド内では他のカードと幅を統一 */
+  min-height: 300px; /* グリッド内では高さを抑える */
+}
+
+/* カード内の画像 */
+.card img {
+  max-width: 100%; /* 画像の幅をカード内に収める */
+  max-height: 200px; /* 画像の高さを制限 */
+  object-fit: cover; /* 画像をカードにフィットさせる */
+  border-radius: 8px; /* カードの角丸に合わせる */
+  display: block; /* 余分なマージンを防ぐ */
+  margin: 15px auto; /* 画像を中央に */
+}
+
+/* ホバーエフェクト */
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 212, 255, 0.2);
+}
+
+/* テキスト */
+h1, h2, h3 {
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+h1 {
+  font-size: 2.5rem;
+  text-shadow: 0 0 10px rgba(0, 212, 255, 0.7);
+}
+
+p {
+  font-size: 1.5rem;
+  line-height: 1.6;
+  color: #ffffff;
+}
+
+/* ネオンエフェクト */
+.neon-text {
+  color: #fff;
+  text-shadow:
+    0 0 5px #fff,
+    0 0 10px #00d4ff,
+    0 0 20px #00d4ff,
+    0 0 40px #ff007a;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .container {
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .card {
+    width: 100%; /* モバイルでは1列 */
+    max-width: 90%; /* モバイルでの幅を調整 */
+    min-height: 400px; /* 縦の長さを維持 */
+  }
+
+  .card.observation-method {
+    max-width: 90%; /* モバイルでも横幅を広く */
+  }
+
+  /* モバイルではグリッドを単列に */
+  .card-container.example-grid {
+    grid-template-columns: 1fr; /* 1列 */
+    max-width: 90%; /* モバイルでの幅を調整 */
+  }
+
+  .card-container.example-grid .card.observation-method {
+    max-width: 100%; /* グリッド内でも幅を最大に */
+  }
+}
