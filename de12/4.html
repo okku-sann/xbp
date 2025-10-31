@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>奥さん第4回</title>
+  <link rel="stylesheet" href="./css/style4.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Pythonでゲームを作ろう</h1>
+    
+    <div class="card pink">
+      <h2>あっち向いてホイ</h2>
+     
+    </div>
+   
+    <div class="card pink">
+      <h2>このゲームの説明</h2>
+     <ul>
+      <li>まずジャンケンをして勝敗を決めます。あいこだったらもう一度ジャンケンを行います。</li>
+      <li>その次にあっち向いてホイを行います。</li>
+      <li>もし勝つことができたら、連続で挑戦することができます。</li>
+      <li>君は何回連続で勝つことができるかな？</li>
+     </ul>
+    </div>
+    <div class="card blue">
+      <h3>コード</h3>
+      <p> <pre><code>import random
+
+# 名前入力
+player_name = input("チャレンジャーの名前を教えてね: ")
+if not player_name:
+    player_name = "名無し"
+
+# じゃんけんの手
+list1 = ["グー", "チョキ", "パー"]
+# 方向
+list2 = ["上", "下", "左", "右"]
+
+# じゃんけん
+def janken():
+    print("\n最初はグー、じゃんけん…")
+    while True:
+        player = input(f"{player_name}の手（グー/チョキ/パー）: ")
+        if player not in list1:
+            print("グー、チョキ、パーのどれかを入力してね！")
+            continue
+        com = random.choice(list1)
+        print(f"{player_name}: {player} | 相手: {com}")  
+        
+        if player == com:
+            print("あいこで…")
+        else:
+            break  # 勝敗決着
+    
+    # 勝ち負け判定
+    if (player == "グー" and com == "チョキ") or \
+       (player == "チョキ" and com == "パー") or \
+       (player == "パー" and com == "グー"):
+        return "player"
+    else:
+        return "cpu"
+
+# あっち向いてホイ
+def acchimuitehoi(winner):
+    print("\nあっち向いて…")
+    
+    if winner == "player":
+        while True:
+            player_dir = input(f"{player_name}が指をさす方向（上/下/左/右）: ")
+            if player_dir in list2:
+                break
+            print("上/下/左/右 から入力してね！")
+        com_dir = random.choice(list2)
+    else:
+
+        while True:
+            player_dir = input(f"{player_name}が顔を向ける方向（上/下/左/右）: ")
+            if player_dir in list2:
+                break
+            print("上/下/左/右 から入力してね！")
+        com_dir = random.choice(list2)
+        print(f"相手が指をさす: {com_dir}")
+    
+    print(f"あなた: {player_dir} | 相手: {com_dir}")
+    return player_dir == com_dir
+
+# === メインゲーム ===
+print("\nあっち向いてホイ 連勝チャレンジ！")
+print("何回連続で勝ち続けられるかな？？\n")
+
+score = 0  # 連勝数
+
+while True:
+    winner = janken()
+    
+    if acchimuitehoi(winner):
+        if winner == "player":
+            score += 1
+            print(f"\n{score}連勝！次も勝つぞ{player_name}!")
+            print("次の相手が現れた…！\n")
+        else:
+            print(f"\n{score}連勝で終了！よく頑張ったね、{player_name}!")
+            break
+    else:
+        print("外れた！じゃんけんからやり直しだ！\n")
+
+print(f"\n最終連勝数: {score} 連勝！")
+print(f"諦めたらそこで終了ですよ、{player_name}!")</pre></code></p>
+    </div>
+    
+    <div class="card pink">
+      <h2>Pythonで勉強したこと</h2>
+      player = input(f"{player_name}の手（グー/チョキ/パー）: ")<br>
+      などで使われている「f」はPython の f-string（フォーマット済み文字列リテラル）といい<br>
+      文字列内に式を簡単に埋め込める便利な機能です。<br><a href="https://aiacademy.jp/media/?p=1532"target="_blank">【初心者向け】Python f文字列（f-strings）とは何か？</a>
+
+      <br>
+      \n は「改行（newline）」を表すエスケープシーケンスです。<br>
+      Python の中で \n と書くと、実際の改行（Enter キーと同じ）に変換されます。<br>
+      <a href="https://note.nkmk.me/python-string-line-break/"target="_blank">Pythonで改行を含む文字列の出力、連結、分割、削除、置換</a>
+
+    </div>
+    <div class="card pink">
+      <h2>まとめ</h2>
+      Pythonは自分でうふごいて欲しいようには勝手に動いてくれないから全て指示を出して動いてくれるようにしなければならない。<br>
+      タブキーを使ってちゃんと内容が中に入るようにする。
+
+     
+    </div>
+<iframe width="414" height="736" src="https://www.youtube.com/embed/l8Zu0wM7dG0" title="2025年10月31日" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</body>
+</html>

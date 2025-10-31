@@ -1,0 +1,77 @@
+/* パステルカラーパレット */
+:root {
+  --pastel-pink: #FFD1DC;
+  --pastel-blue: #A7C7E7;
+  --pastel-mint: #B5EAD7;
+  --pastel-yellow: #FFFACD;
+  --pastel-lavender: #E0BBE4;
+  --pastel-peach: #FFDAC1;
+  --text-dark: #555555;
+  --text-light: #ffffff;
+  --border-radius: 12px;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+body {
+  background: linear-gradient(135deg, var(--pastel-mint), var(--pastel-blue));
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--text-dark);
+  margin: 0;
+  padding: 2rem;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+h1 {
+  color: var(--pastel-lavender);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.card {
+  background: var(--text-light);
+  padding: 1.5rem;
+  margin: 1rem 0;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card.pink { background: var(--pastel-pink); }
+.card.blue { background: var(--pastel-blue); color: var(--text-light); }
+.card.mint { background: var(--pastel-mint); }
+.card.yellow { background: var(--pastel-yellow); }
+.card.lavender { background: var(--pastel-lavender); color: var(--text-light); }
+.card.peach { background: var(--pastel-peach); }
+
+.button {
+  display: inline-block;
+  padding: 0.8rem 1.8rem;
+  margin: 0.5rem;
+  border: none;
+  border-radius: var(--border-radius);
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.button.pink { background: var(--pastel-pink); color: var(--text-dark); }
+.button.blue { background: var(--pastel-blue); color: var(--text-light); }
+.button.mint { background: var(--pastel-mint); color: var(--text-dark); }
+.button.yellow { background: var(--pastel-yellow); color: var(--text-dark); }
+
+.button:hover {
+  transform: scale(1.05);
+  box-shadow: var(--shadow);
+}
