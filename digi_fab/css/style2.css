@@ -1,0 +1,109 @@
+/* ==============================
+   リセット & 基本
+   ============================== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { font-size: 16px; }
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  background: #FDF6E3;
+  color: #333;
+  line-height: 1.7;
+  padding: 20px 0;
+}
+.container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+
+/* ==============================
+   見出し
+   ============================== */
+h1 { text-align: center; font-size: 2.2rem; color: #8B6F47; margin-bottom: 30px; font-weight: 600; letter-spacing: 0.5px; }
+.card { background: #fff; border-radius: 16px; padding: 24px; margin-bottom: 28px; box-shadow: 0 4px 15px rgba(139,111,71,0.12); border: 1px solid #f0e6d2; transition: all 0.3s ease; }
+.card:hover { transform: translateY(-4px); box-shadow: 0 8px 25px rgba(240,193,75,0.2); }
+.card h2 { font-size: 1.4rem; color: #8B6F47; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 2px solid #F0C14B; position: relative; }
+.card h2::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 40px; height: 2px; background: #F0C14B; }
+
+/* ==============================
+   画像（切れない！）
+   ============================== */
+.full-img, .photo-item img {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  background: #fff;
+  border-radius: 12px;
+  padding: 8px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  display: block;
+  margin: 16px auto;
+}
+.sketch { max-height: 280px; }
+
+/* ==============================
+   2x2グリッド
+   ============================== */
+.grid-card { padding: 28px; }
+.grid-card h2 { text-align: center; margin-bottom: 24px; font-size: 1.5rem; }
+.photo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.photo-item {
+  background: #f9f5f0; border-radius: 12px; overflow: hidden;
+  box-shadow: 0 3px 10px rgba(139,111,71,0.1); padding: 12px;
+  display: flex; flex-direction: column; align-items: center;
+  position: relative; transition: transform 0.3s ease;
+}
+.photo-item:hover { transform: translateY(-6px); box-shadow: 0 8px 20px rgba(240,193,75,0.25); }
+.photo-item img {
+  width: 100%; height: auto; max-height: 180px; margin: 0 0 12px 0; cursor: zoom-in;
+}
+.photo-title { font-weight: 600; color: #8B6F47; margin: 8px 0; font-size: 1rem; text-align: center; }
+.photo-item .btn { margin-top: auto; font-size: 0.85rem; padding: 8px 14px; width: 90%; text-align: center; }
+
+/* 花火エフェクト */
+.fireworks { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0; transition: opacity 0.5s; }
+.photo-item:hover .fireworks { opacity: 1; }
+.fireworks::before, .fireworks::after {
+  content: ''; position: absolute; width: 6px; height: 6px; background: #FFD700;
+  border-radius: 50%; box-shadow: 0 0 12px #FFD700; animation: spark 1.8s infinite;
+}
+.fireworks::before { top: 18%; left: 28%; animation-delay: 0.3s; }
+.fireworks::after { bottom: 22%; right: 32%; animation-delay: 1s; }
+@keyframes spark { 0% { transform: scale(0); opacity: 1; } 100% { transform: scale(3.5); opacity: 0; } }
+
+/* ==============================
+   モーダル（切れなし）
+   ============================== */
+.modal {
+  display: none; position: fixed; z-index: 1000; left: 0; top: 0;
+  width: 100%; height: 100%; background: rgba(0,0,0,0.92);
+  justify-content: center; align-items: center; padding: 20px;
+}
+.modal-content {
+  max-width: 92%; max-height: 88vh; width: auto; height: auto;
+  object-fit: contain; background: #000; border-radius: 14px;
+  box-shadow: 0 0 40px rgba(240,193,75,0.6); padding: 10px;
+}
+#caption { margin-top: 16px; color: #F0C14B; font-size: 1.1rem; text-align: center; font-weight: 500; }
+.close {
+  position: absolute; top: 20px; right: 35px; color: #fff; font-size: 42px;
+  font-weight: bold; cursor: pointer; transition: 0.3s;
+}
+.close:hover { color: #F0C14B; transform: scale(1.1); }
+
+/* ==============================
+   ボタン
+   ============================== */
+.btn {
+  display: inline-block; background: #F0C14B; color: #333; font-weight: 500;
+  padding: 10px 20px; text-decoration: none; border-radius: 8px;
+  margin-top: 12px; font-size: 0.95rem; transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(240,193,75,0.3); text-align: center;
+}
+.btn:hover { background: #e6b800; color: #fff; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(240,193,75,0.5); }
+
+/* ==============================
+   レスポンシブ
+   ============================== */
+@media (max-width: 768px) {
+  h1 { font-size: 1.8rem; }
+  .photo-grid { grid-template-columns: 1fr; gap: 18px; }
+  .photo-item img { max-height: 140px; }
+  .modal-content { max-width: 96%; max-height: 80vh; }
+}
