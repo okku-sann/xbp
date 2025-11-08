@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>奥さん第5回</title>
+  <link rel="stylesheet" href="./css/style5.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="grid"></div>
+  
+  <!-- Hero Section -->
+  <header class="hero">
+    <h1>気分で決めよう今日のご飯！</h1>
+  </header>
+
+  <!-- Features Section -->
+  <section class="features">
+    <!-- カード1：コード -->
+    <div class="feature-card">
+      <h2>コード</h2>
+      <pre><code># kabuka.py
+import requests
+import json
+import sys
+
+# ==================== 設定 ====================
+API_KEY = "ここにAPI key"  # 環境変数推奨
+URL = "http://webservice.recruit.co.jp/hotpepper/gourmet/v1/"
+
+MOOD_KEYWORDS = {
+    "ガッツリ": "ステーキ ハンバーグ 肉 ラーメン 丼",
+    "さっぱり": "サラダ 冷麺 魚 そば うどん",
+    "豪華": "フレンチ イタリアン 寿司 割烹",
+    "ヘルシー": "野菜 サラダ 豆腐 玄米 低カロリー",
+    "甘い": "カフェ パンケーキ スイーツ デザート",
+    "辛い": "激辛 麻婆 カレー 担々麺",
+    "おしゃれ": "カフェ ワイン ビストロ",
+    "安い": "定食 ラーメン 牛丼 うどん",
+    "ひとり": "カウンター ラーメン そば",
+}
+
+# ==================== 座標取得 ====================
+def get_lat_lng(location):
+    geocode_url = "https://nominatim.openstreetmap.org/search"
+    params = {"q": location, "format": "json", "limit": 1}
+    headers = {"User-Agent": "LunchFinder/1.0 (contact@example.com)"}
+    try:
+        r = requests.get(geocode_url, params=params, headers=headers, timeout=10)
+        r.raise_for_status()
+        data = r.json()
+        if data:
+            lat = float(data[0]["lat"])
+            lng = float(data[0]["lon"])
+            display_name = data[0].get("display_name", "")
+            return lat, lng, display_name
+    except Exception as e:
+        print(f"座標取得エラー: {e}", file=sys.stderr)
+    return None, None, ""
+
+# ==================== 距離自動決定 ====================
+def auto_range(lat, lng, place_name):
+    urban_areas = ["東京", "大阪", "名古屋", "横浜", "京都", "神戸", "札幌", "福岡", "仙台", "広島"]
+    if any(city in place_name for city in urban_areas):
+        return 2  # 500m
+    elif any(keyword in place_name for keyword in ["駅", "町", "市", "区"]):
+        return 3  # 1km
+    else:
+        return 5  # 3km
+
+# ==================== 予算コード ====================
+def get_budget_code(budget_input):
+    if not budget_input:
+        return ""
+    try:
+        budget_input = budget_input.replace(" ", "")
+        if "-" in budget_input:
+            min_b, max_b = map(int, budget_input.split("-"))
+        else:
+            val = int(budget_input)
+            min_b, max_b = val, val + 999
+
+        codes = []
+        budget_map = {
+            (0, 1000): "B001",
+            (1001, 2000): "B002",
+            (2001, 3000): "B003",
+            (3001, 4000): "B004",
+            (4001, 5000): "B005",
+            (5001, 999999): "B006",
+        }
+        for (min_r, max_r), code in budget_map.items():
+            if min_b <= max_r and max_b >= min_r:
+                codes.append(code)
+        return ",".join(codes) if codes else ""
+    except:
+        print("金額帯の形式が不正です（例: 1000-3000）。無視します。")
+        return ""
+
+# ==================== 検索（リトライ付き） ====================
+def search_with_fallback(keyword, lat, lng, range_val, budget_code="", mood=""):
+    base_params = {
+        "key": API_KEY, "lat": lat, "lng": lng,
+        "range": range_val, "order": 4, "count": 10, "format": "json"
+    }
+
+    mood_kw = MOOD_KEYWORDS.get(mood, mood) if mood else ""
+    full_keyword = f"{keyword} {mood_kw}".strip()
+
+    trials = [
+        {"keyword": full_keyword, "budget": budget_code},
+        {"keyword": keyword, "budget": budget_code},
+        {"keyword": full_keyword, "budget": ""},
+        {"keyword": keyword, "budget": "", "range": min(5, range_val + 1)},
+        {"keyword": keyword, "budget": "", "range": min(5, range_val + 2)},
+        {"keyword": "ランチ", "lat": 35.6812, "lng": 139.7671, "range": 3, "budget": ""},
+    ]
+
+    for i, mod in enumerate(trials):
+        params = base_params.copy()
+        params.update(mod)
+
+        dist_km = {1:0.3, 2:0.5, 3:1, 4:2, 5:3}.get(params.get("range", 3), 3)
+        print(f"  試行 {i+1}: '{params.get('keyword', '')}' | {dist_km}km以内")
+
+        try:
+            r = requests.get(URL, params=params, timeout=15)
+            if r.status_code != 200:
+                print(f"    HTTPエラー: {r.status_code}")
+                continue
+            data = r.json()
+            results = data.get("results", {})
+            if "error" in results:
+                print(f"    APIエラー: {results['error'][0]['message']}")
+                continue
+            shops = results.get("shop", [])
+            if shops:
+                print(f"    成功: {len(shops)}件ヒット！")
+                return shops, params
+        except Exception as e:
+            print(f"    リクエスト失敗: {e}")
+            continue
+    return [], {}
+
+# ==================== メイン ====================
+def main():
+    print("=== 気分でランチ探し（距離は自動！） ===")
+    
+    keyword = input("場所を入力（例: 渋谷, 東京駅）: ").strip()
+    if not keyword:
+        keyword = "横浜駅"
+
+    budget_input = input("金額帯（例: 1000-3000, 空欄=無制限）: ").strip()
+    mood = input("あなたの気分は？（例: ガッツリ, さっぱり）: ").strip()
+
+    print(f"\n「{keyword}」を検索中...")
+    lat, lng, place_name = get_lat_lng(keyword)
+    if not lat:
+        print("場所が見つかりません。横浜駅を基準にします。")
+        lat, lng = 35.6812, 139.7671
+        place_name = "横浜駅"
+
+    range_val = auto_range(lat, lng, place_name)
+    dist_km = {1:0.3, 2:0.5, 3:1, 4:2, 5:3}.get(range_val, 3)
+    print(f"自動距離: {dist_km}km以内（{place_name.split(',')[0]}基準）")
+
+    budget_code = get_budget_code(budget_input)
+
+    print(f"\n検索開始...")
+    shops, used_params = search_with_fallback(
+        keyword=keyword, lat=lat, lng=lng,
+        range_val=range_val, budget_code=budget_code, mood=mood
+    )
+
+    if not shops:
+        print("\n該当なし... 明日またトライ！")
+        return
+
+    used_range = used_params.get("range", range_val)
+    final_dist = {1:0.3, 2:0.5, 3:1, 4:2, 5:3}.get(used_range, 3)
+    print(f"\n{'='*50}")
+    print(f"  結果: {len(shops)}件 | 距離: {final_dist}km以内")
+    print(f"  場所: {keyword} | 気分: {mood or 'なし'}")
+    print(f"{'='*50}")
+
+    for i, shop in enumerate(shops, 1):
+        name = shop.get("name", "不明")
+        genre = shop.get("genre", {}).get("name", "不明")
+        budget = shop.get("budget", {}).get("average", "不明")
+        address = shop.get("address", "")
+        distance_m = shop.get("distance", 0)
+        distance_km = round(distance_m / 1000, 2) if distance_m else "不明"
+        url = shop.get("urls", {}).get("pc", "")
+
+        match_tag = ""
+        if mood:
+            text = f"{name} {genre}".lower()
+            mood_lower = mood.lower()
+            if mood_lower in text:
+                match_tag = " [完璧マッチ！]"
+            elif any(k in text for k in mood_lower.split()):
+                match_tag = " [合いそう]"
+
+        print(f"\n{i}. {name}{match_tag}")
+        print(f"   ジャンル: {genre} | 予算: {budget}")
+        print(f"   住所: {address}")
+        print(f"   距離: {distance_km}km" if distance_km != "不明" else "   距離: 不明")
+        if url:
+            print(f"   詳細: {url}")
+
+# ==================== 実行 ====================
+if __name__ == "__main__":
+    main()</code></pre>
+    </div>
+
+    <!-- カード2：できること（文字被り解消済み） -->
+    <div class="feature-card">
+      <h2>できること</h2>
+      <ul class="capabilities">
+        <li><span class="icon">場所</span>      自動で緯度経度を取得</li>
+        <li><span class="icon">気分</span>     「ガッツリ」「さっぱり」など気分に合わせてキーワード自動追加</li>
+        <li><span class="icon">予算</span>     （例: 1000-2000）をHotPepperのコードに変換</li>
+        <li><span class="icon">範囲</span>      見つからないときは「範囲拡大」や「キーワード緩和」でリトライ</li>
+        <li><span class="icon">動き </span>     ターミナルでサクッと動くPythonスクリプト</li>
+      </ul>
+      <p class="tip"><strong>ヒント：</strong> APIキーは環境変数 <code>RCRUIT_API_KEY</code> に入れると安全！</p>
+    </div>
+    <div class="feature-card">
+      <h2>AIをどのように使ったか</h2>
+<p>大枠はAIを使い、最初は気分を入れることができなかったが気分も自分で入れることができるようにした</p>
+<p>自動で場所や金額を入れることができるようにもするのはAIを使った</p>
+<p>細かい文字の調節は自分で行なった</p>
+<p>APIは自分で取得して行いました</p>
+    </div>
+  </section>
+
+
+
+  <footer>
+    <p>今日のご飯はこれで決まり！</p>
+  </footer>
+</body>
+</html>
