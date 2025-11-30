@@ -1,0 +1,529 @@
+/* ==========================================================================
+   1. CSS変数とリセット
+   ========================================================================== */
+
+:root {
+  /* 色 */
+  --primary: #6366f1;
+  --primary-dark: #4f46e5;
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-700: #374151;
+  --gray-900: #111827;
+  --white: #ffffff;
+  
+  /* フォント */
+  --font-family: 'Noto Sans JP', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  
+  /* サイズ */
+  --radius: 0.75rem;
+  --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* リセット */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family);
+  line-height: 1.6;
+  color: var(--gray-900);
+  background: var(--gray-50);
+  overflow-x: hidden;
+}
+
+/* ==========================================================================
+   2. レイアウト
+   ========================================================================== */
+
+.container {
+  max-width: 800px;  /* カードが1列で綺麗に見える幅に変更 */
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* ==========================================================================
+   3. ヘッダー
+   ========================================================================== */
+
+.header {
+  background: var(--white);
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(10px);
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.logo {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--primary);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nav-list {
+  display: flex;
+  list-style: none;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.nav-link {
+  color: var(--gray-700);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.nav-link:hover {
+  color: var(--primary);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: var(--primary);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* ==========================================================================
+   4. ヒーローセクション
+   ========================================================================== */
+
+.hero {
+  padding: 6rem 0 4rem;
+  text-align: center;
+  background: linear-gradient(135deg, var(--white) 0%, var(--gray-50) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 20% 80%, rgba(99, 102, 241, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.hero-title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  line-height: 1.1;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-text {
+  font-size: 1.25rem;
+  color: var(--gray-700);
+  margin-bottom: 1rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: 400;
+}
+
+.hero-subtitle {
+  font-size: 1.125rem;
+  color: var(--gray-700);
+  margin-top: 1rem;
+  font-weight: 500;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ==========================================================================
+   5. 機能セクション
+   ========================================================================== */
+
+.features {
+  padding: 5rem 0;
+  background: var(--white);
+}
+
+.section-title {
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 4rem;
+  color: var(--gray-900);
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+  margin: 1rem auto 0;
+  border-radius: 2px;
+}
+
+/* 🔑 カードを1列で縦に並べる - ここが重要！ */
+.cards {
+  display: flex;
+  flex-direction: column;  /* 縦に1列で並べる */
+  gap: 3rem;               /* カード間の間隔 */
+  align-items: center;     /* 中央揃え */
+  width: 100%;
+}
+
+.card {
+  background: var(--white);
+  padding: 2.5rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  text-align: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid var(--gray-100);
+  position: relative;
+  overflow: hidden;
+  width: 100%;             /* カードの幅を100%に */
+  max-width: 700px;        /* 最大幅を制限 */
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-xl);
+  border-color: var(--primary);
+}
+
+.card-icon {
+  font-size: 3.5rem;
+  margin-bottom: 1.5rem;
+  display: block;
+}
+
+.card h3 {
+  font-size: 1.375rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: var(--gray-900);
+}
+
+.card-main-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  margin: 1.5rem 0 1rem;
+  line-height: 1.3;
+}
+
+.card-question {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--primary);
+  margin-top: 1.5rem;
+  line-height: 1.4;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.card-description {
+  color: var(--gray-700);
+  line-height: 1.7;
+  margin: 1rem 0;
+  font-size: 1.05rem;
+}
+
+/* ==========================================================================
+   6. 画像ギャラリー（1列ずつ縦に並ぶ・写真が絶対に切れない）
+   ========================================================================== */
+
+.image-gallery {
+  display: flex;
+  flex-direction: column;        /* 縦に1列で並べる */
+  gap: 1.5rem;
+  align-items: center;           /* 中央揃え */
+  justify-content: center;
+  margin-top: 1.5rem;
+  padding: 1rem;
+  width: 100%;
+}
+
+.gallery-image {
+  width: 100%;
+  max-width: 400px;              /* 最大幅制限 */
+  height: 280px;                 /* 固定高さ */
+  object-fit: cover;             /* 写真が切れない */
+  object-position: center;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 3px solid transparent;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.gallery-image::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.gallery-image:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: var(--shadow-xl);
+  border-color: var(--primary);
+}
+
+.gallery-image:hover::before {
+  opacity: 1;
+}
+
+.gallery-image.loaded {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   7. アイデアリスト
+   ========================================================================== */
+
+.idea-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 1.5rem;
+}
+
+.idea-list li {
+  background: var(--gray-50);
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+  border-radius: var(--radius);
+  border-left: 4px solid var(--primary);
+  line-height: 1.6;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.idea-list li::before {
+  content: '💭';
+  margin-right: 0.75rem;
+  font-size: 1.1rem;
+}
+
+.idea-list li:hover {
+  background: var(--gray-100);
+  transform: translateX(8px);
+  box-shadow: var(--shadow);
+  border-left-width: 6px;
+}
+
+/* ==========================================================================
+   8. フッター
+   ========================================================================== */
+
+.footer {
+  background: var(--gray-900);
+  color: var(--white);
+  text-align: center;
+  padding: 3rem 0;
+  margin-top: 6rem;
+}
+
+.footer p {
+  margin: 0;
+  opacity: 0.8;
+  font-size: 0.95rem;
+}
+
+/* ==========================================================================
+   9. レスポンシブデザイン（カード・画像ともに全画面サイズで1列）
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
+    max-width: 100%;
+  }
+  
+  .nav {
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+  }
+  
+  .nav-list {
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .hero {
+    padding: 4rem 0 3rem;
+  }
+  
+  .features {
+    padding: 4rem 0;
+  }
+  
+  /* カードは常に1列 */
+  .cards {
+    gap: 2.5rem;
+  }
+  
+  .card {
+    padding: 2rem;
+    max-width: 100%;
+  }
+  
+  /* 画像は常に1列 */
+  .image-gallery {
+    gap: 1.5rem;
+    padding: 0.5rem;
+  }
+  
+  .gallery-image {
+    max-width: 320px;
+    height: 240px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 3rem 0 2rem;
+  }
+  
+  .features {
+    padding: 3rem 0;
+  }
+  
+  .card {
+    padding: 1.75rem;
+  }
+  
+  .image-gallery {
+    gap: 1.25rem;
+    padding: 0;
+  }
+  
+  .gallery-image {
+    max-width: 280px;
+    height: 220px;
+  }
+  
+  .idea-list li {
+    padding: 1rem;
+  }
+}
+
+/* ==========================================================================
+   10. アクセシビリティ
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media (prefers-contrast: high) {
+  .card,
+  .header,
+  .hero {
+    border: 2px solid;
+  }
+  
+  .gallery-image {
+    border: 3px solid;
+  }
+}
+
+/* ==========================================================================
+   11. スクロールアニメーション（カードが順番に登場）
+   ========================================================================== */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card {
+  opacity: 0;
+  animation: fadeIn 0.6s ease forwards;
+}
+
+.card:nth-child(1) { animation-delay: 0.1s; }
+.card:nth-child(2) { animation-delay: 0.3s; }
+.card:nth-child(3) { animation-delay: 0.5s; }
+.card:nth-child(4) { animation-delay: 0.7s; }
