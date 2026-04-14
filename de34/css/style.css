@@ -1,0 +1,107 @@
+:root {
+    --wood-light: #f4ede3;
+    --wood-base: #dbc3a3;
+    --wood-mid: #a67c52;
+    --wood-dark: #5f4630;
+    --leaf-deep: #5d6f57;
+    --leaf-soft: #7f9478;
+    --text-main: #3f3125;
+    --shadow-soft: rgba(70, 48, 29, 0.12);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    padding: 40px 24px 64px;
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", "MS PMincho", serif;
+    color: var(--text-main);
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.15)),
+        repeating-linear-gradient(
+            0deg,
+            rgba(166, 124, 82, 0.08) 0px,
+            rgba(166, 124, 82, 0.08) 3px,
+            rgba(255, 255, 255, 0.04) 3px,
+            rgba(255, 255, 255, 0.04) 12px
+        ),
+        linear-gradient(135deg, var(--wood-light), #efe3d0 45%, #e3d1b8 100%);
+    line-height: 1.8;
+}
+
+logotohome {
+    display: block;
+    width: fit-content;
+    margin: 0 auto 28px;
+}
+
+logotohome a {
+    display: inline-block;
+    padding: 14px 18px;
+    border: 1px solid rgba(95, 70, 48, 0.14);
+    border-radius: 18px;
+    background: rgba(255, 252, 247, 0.72);
+    box-shadow: 0 10px 30px var(--shadow-soft);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+}
+
+logotohome a:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 252, 247, 0.92);
+    box-shadow: 0 14px 34px rgba(70, 48, 29, 0.16);
+}
+
+logotohome img {
+    display: block;
+    max-width: min(180px, 42vw);
+    height: auto;
+}
+
+h1 {
+    width: min(720px, 100%);
+    margin: 0 auto;
+    padding: 22px 28px;
+    border-left: 8px solid var(--wood-mid);
+    border-radius: 16px;
+    background: rgba(255, 249, 241, 0.78);
+    box-shadow: 0 12px 28px var(--shadow-soft);
+    color: var(--wood-dark);
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-align: center;
+}
+
+body > :not(logotohome):not(h1) {
+    width: min(720px, 100%);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+a {
+    color: var(--leaf-deep);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--leaf-soft);
+}
+
+@media (max-width: 640px) {
+    body {
+        padding: 24px 16px 48px;
+    }
+
+    h1 {
+        padding: 18px 16px;
+        letter-spacing: 0.04em;
+    }
+
+    logotohome a {
+        padding: 12px 14px;
+        border-radius: 14px;
+    }
+}

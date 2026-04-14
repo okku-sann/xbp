@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arduino学習まとめ</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <h1>デザイン演習Ⅲ・Ⅳ第一回</h1>
+
+    <section class="lead">
+        <p>
+            Arduino（アルディーノ）を使い、LEDを点滅させる「Lチカ」と、明るさセンサーを用いて
+            暗いところでLEDが光る仕組みを作った。
+        </p>
+        <p>
+            Arduinoは、2005年にイタリアで生まれた、初心者でも電子工作とプログラミングを学びやすい
+            オープンソースのプラットフォームであり、マイコンボード本体と統合開発環境（IDE）から成り立っている。
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>Lチカ</h2>
+        <h3>使用するもの</h3>
+        <ul>
+            <li>LED</li>
+            <li>Arduinoのデジタルピン</li>
+        </ul>
+
+        <h3>基本構造</h3>
+        <ul>
+            <li>ピンに電気を流すとLEDが点灯する</li>
+            <li>電気を止めるとLEDが消灯する</li>
+        </ul>
+
+        <h3>基本コード</h3>
+        <div class="code-block">
+            <code>pinMode(13, OUTPUT);
+digitalWrite(13, HIGH);
+digitalWrite(13, LOW);
+delay(1000);</code>
+        </div>
+
+        <table>
+            <tr>
+                <th>命令</th>
+                <th>意味</th>
+            </tr>
+            <tr>
+                <td>pinMode(13, OUTPUT)</td>
+                <td>13番ピンを出力として使う</td>
+            </tr>
+            <tr>
+                <td>digitalWrite(13, HIGH)</td>
+                <td>電気を流してLEDを点灯させる</td>
+            </tr>
+            <tr>
+                <td>digitalWrite(13, LOW)</td>
+                <td>電気を止めてLEDを消灯させる</td>
+            </tr>
+            <tr>
+                <td>delay(1000)</td>
+                <td>1秒待つ</td>
+            </tr>
+        </table>
+
+        <h3>デジタル出力の特徴</h3>
+        <table>
+            <tr>
+                <th>状態</th>
+                <th>意味</th>
+            </tr>
+            <tr>
+                <td>HIGH</td>
+                <td>ON（電気あり）</td>
+            </tr>
+            <tr>
+                <td>LOW</td>
+                <td>OFF（電気なし）</td>
+            </tr>
+        </table>
+
+        <p>Arduinoのデジタル出力は、0か1かの2択で制御するシンプルな仕組みである。</p>
+
+        <h3>動作の流れ</h3>
+        <ol>
+            <li><code>setup</code> でピンを設定する</li>
+            <li><code>loop</code> でONとOFFを繰り返す</li>
+            <li>その結果、LEDが点滅する</li>
+        </ol>
+    </section>
+
+    <section class="section">
+        <h2>明るさセンサー</h2>
+        <h3>使用部品</h3>
+        <ul>
+            <li>CdSセル（光によって抵抗値が変わる）</li>
+            <li>10kΩ抵抗</li>
+        </ul>
+
+        <h3>プログラムの要点</h3>
+        <div class="code-block">
+            <code>val = analogRead(A1);
+Serial.println(val);</code>
+        </div>
+
+        <table>
+            <tr>
+                <th>命令</th>
+                <th>意味</th>
+            </tr>
+            <tr>
+                <td>analogRead(A1)</td>
+                <td>A1ピンの電圧を読み取る</td>
+            </tr>
+            <tr>
+                <td>Serial.println(val)</td>
+                <td>読み取った値をPCに表示する</td>
+            </tr>
+        </table>
+
+        <p>
+            Arduinoのアナログ入力では、0Vから5Vまでの電圧を0から1023までの数値に変換して扱うことができる。
+            デジタルのように0か1だけではなく、連続した値を読み取れることが特徴である。
+        </p>
+
+        <table>
+            <tr>
+                <th>電圧</th>
+                <th>値</th>
+            </tr>
+            <tr>
+                <td>0V</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>5V</td>
+                <td>1023</td>
+            </tr>
+        </table>
+
+        <p>今回の明るさセンサーでは、明るいと値が小さくなり、暗いと値が大きくなる。</p>
+        <p>この変化を利用することで、暗い場所でLEDが光る仕組みを作ることができた。</p>
+    </section>
+
+    <section class="note">
+        <p>
+            この学習を通して、Arduinoではデジタル出力による単純なON/OFF制御だけでなく、
+            アナログ入力を使って周囲の環境に応じた動作も実現できることが分かった。
+        </p>
+    </section>
+</body>
+</html>
