@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>奥さん第2回</title>
+<link rel="stylesheet" href="./css/1style.css">
+<style>
+  code { background: #f4f4f4; padding: 2px 4px; }
+</style>
+</head>
+
+<body>
+<h1>デザイン演習Ⅲ・Ⅳ第2回</h1>
+
+<section class="lead">
+  <h2>第一回で学んだ内容と今回学んだモーターを組み合わせて面白いものを作る</h2>
+
+  <h3>作品名</h3>
+  <h2>社会風刺</h2><br>
+
+  <h2>この作品を作ろうと思った経緯</h2>
+  <p>
+    まず初めに今回はじめてモーターを動かした時に、動き方が多方向から叩いているように見えたことから、この動きをうまく活かせないかと考えた。
+  </p>
+
+  <h2>作品の説明</h2>
+  <p>
+    この作品はディズニーのキャラクターであるミッキーの手と、USJのキャラクターであるミニオンを組み合わせた作品である。<br>
+    モーターにはミッキーの手の部分を取り付け、その手が当たる位置にミニオンを配置した。<br>
+    前回学んだ光センサーと今回学んだモーターを組み合わせて動作するようにした。<br>
+    電気を消した状態では見えない場所で叩いている様子を表現し、電気をつけて周囲から注目される状態では動作を止めることで、
+    表面上は何も起きていないように見える社会の闇を表現している。
+  </p>
+
+  <h2>この作品の工夫をした点</h2>
+  <p>
+    本作品では、光センサーとモーターを組み合わせることで、周囲の明るさによって動作が変化する仕組みを工夫した。<br>
+    暗い環境ではモーターが作動し、ミッキーの手がミニオンを叩く動きをし、明るい環境ではモーターを停止させることで、
+    何も起こっていないように見せるようにした。<br>
+    また、モーターの回転角度や速度を調整することで、より自然な動きを再現できるよう工夫した。
+  </p>
+  <iframe width="1020" height="574" src="https://www.youtube.com/embed/HbbDi1CyoCc" title="ステッピングモーター" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+ <h2>今回のコード</h2>
+
+<pre><code>
+const int DIR = 8;
+const int STEP = 9;
+
+int stepsPerRevolution = 200;
+int threshold = 200;
+
+void setup() {
+  pinMode(DIR, OUTPUT);
+  pinMode(STEP, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  int val = analogRead(1);
+  Serial.println(val);
+
+  if (val > threshold) {
+    // 暗い → 回転（右）
+    rotateAngle(90, HIGH); // 右
+    delay(10);
+    rotateAngle(90, LOW);  // 左
+    delay(10);
+  } else {
+    // 明るい → 停止
+    digitalWrite(STEP, LOW);
+  }
+}
+
+void rotateAngle(float angle, int direction) {
+  int steps = stepsPerRevolution * angle / 360;
+
+  digitalWrite(DIR, direction);
+
+  for (int i = 0; i < steps; i++) {
+    digitalWrite(STEP, HIGH);
+    delayMicroseconds(1000);
+    digitalWrite(STEP, LOW);
+    delayMicroseconds(1000);
+  }
+}
+</code></pre>
+  <h2>Arduinoコードの説明</h2>
+
+  <h3>① ピン設定と初期化</h3>
+  <p>
+    <code>DIR</code>は回転方向、<code>STEP</code>はステップ信号を出すピンである。<br>
+    また、<code>Serial.begin(9600);</code>によりセンサーの値を表示する。
+  </p>
+
+  <h3>② センサー値の取得</h3>
+  <p>
+    <code>analogRead(1)</code>によって明るさを読み取る。
+  </p>
+
+  <h3>③ 条件分岐</h3>
+  <p>
+    <code>if (val &gt; threshold)</code>で明るさを判断し、暗い場合は回転、明るい場合は停止する。
+  </p>
+
+  <h3>④ モーターの動き</h3>
+  <p>
+    <code>rotateAngle(90, HIGH);</code>と<code>rotateAngle(90, LOW);</code>により、
+    90度ずつ左右に回転する。
+  </p>
+
+  <h3>⑤ 回転の仕組み</h3>
+  <p>
+    角度をステップ数に変換し、<code>digitalWrite</code>を繰り返すことでモーターを動かす。
+  </p>
+
+  <h3>まとめ</h3>
+  <p>
+    明るさに応じてモーターの動きを制御するプログラムを使い現実で起きているイジメのような社会風刺を表せたらと思いこの作品を作り上げた。<br>
+  </p>
+
+</section>
+</body>
+</html>
