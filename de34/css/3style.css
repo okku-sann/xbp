@@ -1,0 +1,70 @@
+/* 全体設定 */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #f4f4f4;
+}
+
+/* ヘッダー */
+header {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+/* ナビ */
+nav {
+    background-color: #555;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+}
+
+nav li {
+    margin: 0 15px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+}
+
+nav a:hover {
+    background-color: #777;
+}
+
+/* メイン */
+main {
+    padding: 20px;
+}
+
+/* セクション */
+section {
+    margin-bottom: 40px;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+/* コード表示 */
+pre {
+    background: #222;
+    color: #0f0;
+    padding: 15px;
+    overflow-x: auto;
+}
+
+/* フッター */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask解説ページ</title>
+    <link rel="stylesheet" href="./css/3style.css">
+</head>
+
+<body>
+
+    <!-- ヘッダー -->
+    <header>
+        <h1>Flask入門</h1>
+        <p>PythonでWebアプリを作るための軽量フレームワーク</p>
+    </header>
+
+    <!-- ナビゲーション -->
+    <nav>
+        <ul>
+            <li><a href="#about">Flaskとは</a></li>
+            <li><a href="#features">特徴</a></li>
+            <li><a href="#example">プログラム例</a></li>
+            <li><a href="#summary">まとめ</a></li>
+        </ul>
+    </nav>
+
+    <!-- メイン -->
+    <main>
+
+        <!-- Flaskとは -->
+        <section id="about">
+            <h2>Flaskとは</h2>
+            <p>
+                Flask（フラスコ/フラスク）とは、PythonのWebアプリケーションフレームワークで、小規模向けの簡単なWebアプリケーションを作るのに適しています。<br>
+Webフレームワークとは、ウェブサイトやウェブアプリケーションを作るための機能を提供し、<br>
+ウェブフレームワークを使わない時よりもより容易にWebアプリケーションを作ることができるものです。<br>
+      <a href="https://aiacademy.jp/media/?p=57"target="_blank">引用元</a>
+
+            </p>
+        </section>
+
+        <!-- 特徴 -->
+        <section id="features">
+            <h2>Flaskの特徴</h2>
+        <p>Flask（フラスク）は、Pythonで使える軽量なWebフレームワークです。とてもシンプルで、必要な機能だけを自由に追加できるのが特徴です。<br>
+        他のフレームワークに比べて、コード量が少なくて済むため、学びながらすぐに動かして試すことができます。<br>
+        また、Flaskはコミュニティが活発で、ドキュメントも豊富なので、つまずいても情報を見つけやすいのも魅力です。<br>
+        Pythonの標準ライブラリや他の外部パッケージとの相性も良いため、カスタマイズ性が高く、自由に設計できる点も大きなメリットです。<br>
+          <a href="https://zenn.dev/oit2003/articles/66af910431a486"target="_blank">引用元</a></p>
+        
+        </section>
+
+        <!-- プログラム例 -->
+        <section id="example">
+            <h2>Flaskのプログラム例</h2>
+
+            <h3>Pythonコード</h3>
+            <pre><code>
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route("/")
+def hello():
+    return "Hello, Flask!"
+
+if __name__ == "__main__":
+    app.run(debug=True)
+            </code></pre>
+
+            <h3>HTMLテンプレート例</h3>
+            <pre><code>
+&lt;h1&gt;Hello Flask&lt;/h1&gt;
+            </code></pre>
+
+        </section>
+
+        <!-- まとめ -->
+        <section id="summary">
+            <h2>まとめ</h2>
+            <p>
+                Flaskはシンプルで初心者でも扱いやすいWebフレームワークです。
+            </p>
+        </section>
+
+    </main>
+
+    <!-- フッター -->
+    <footer>
+        <p>&copy; 2026 Flask Study</p>
+    </footer>
+
+</body>
+</html>
