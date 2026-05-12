@@ -1,0 +1,6 @@
+{
+  "scripts": {
+    "build": "ruby scripts/build_check.rb"
+  },
+  "devDependencies": {}
+}
