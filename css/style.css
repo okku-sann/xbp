@@ -4,6 +4,10 @@
 @import url('https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c:400,700&display=swap&subset=japanese');
 /* フォントを指定したいところで */
 
+* {
+    box-sizing: border-box;
+}
+
 logo img{
     border-radius: 50%;
     width: 150px;
@@ -52,3 +56,800 @@ span.blackback{
     color: #efefef;
 }
 
+/* ========== top page ========== */
+body.home {
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    color: #101010;
+    background:
+        linear-gradient(90deg, rgba(16, 16, 16, 0.05) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(16, 16, 16, 0.05) 1px, transparent 1px),
+        #f7f7f2;
+    background-size: 64px 64px;
+    font-family: "Raleway", "M PLUS Rounded 1c", sans-serif;
+}
+
+.home a,
+.course a {
+    text-decoration: none;
+}
+
+.home div,
+.home p,
+.course div,
+.course p {
+    margin-left: 0;
+}
+
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    width: min(1180px, calc(100% - 40px));
+    margin: 0 auto;
+    padding: 18px 0;
+    backdrop-filter: blur(14px);
+}
+
+.brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    color: #101010;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.brand img {
+    width: 44px;
+    height: 44px;
+    border: 1px solid rgba(16, 16, 16, 0.14);
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.site-nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px;
+    border: 1px solid rgba(16, 16, 16, 0.12);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.72);
+    box-shadow: 0 18px 50px rgba(16, 16, 16, 0.08);
+}
+
+.site-nav a {
+    padding: 10px 14px;
+    border-radius: 999px;
+    color: #202020;
+    font-size: 0.76rem;
+    line-height: 1;
+    text-decoration: none;
+    transition: color 0.25s ease, background 0.25s ease;
+}
+
+.site-nav a:hover,
+.site-nav a:focus-visible {
+    color: #fff;
+    background: #101010;
+}
+
+.hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.12fr) minmax(320px, 0.88fr);
+    align-items: end;
+    gap: 48px;
+    width: min(1180px, calc(100% - 40px));
+    min-height: calc(100vh - 82px);
+    margin: 0 auto;
+    padding: 82px 0 64px;
+}
+
+.hero-copy {
+    max-width: 760px;
+}
+
+.eyebrow {
+    margin: 0 0 18px;
+    color: #637066;
+    font-size: 0.78rem;
+    font-weight: 700;
+    line-height: 1.5;
+    text-transform: uppercase;
+}
+
+.home h1 {
+    margin: 0;
+    max-width: 780px;
+    font-size: clamp(4.2rem, 12vw, 9.5rem);
+    font-weight: 700;
+    line-height: 0.95;
+}
+
+.lead {
+    max-width: 570px;
+    margin: 30px 0 0;
+    color: #444;
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    line-height: 2;
+}
+
+.primary-link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 18px;
+    margin-top: 42px;
+    padding: 18px 24px;
+    border: 1px solid #101010;
+    color: #101010;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.25s ease, background 0.25s ease, transform 0.25s ease;
+}
+
+.primary-link::after {
+    content: "";
+    width: 42px;
+    height: 1px;
+    background: currentColor;
+    transition: transform 0.25s ease;
+}
+
+.primary-link:hover,
+.primary-link:focus-visible {
+    color: #fff;
+    background: #101010;
+    transform: translateY(-2px);
+}
+
+.primary-link:hover::after,
+.primary-link:focus-visible::after {
+    transform: translateX(8px);
+}
+
+.hero-visual {
+    position: relative;
+    min-height: 520px;
+    border-left: 1px solid rgba(16, 16, 16, 0.18);
+    overflow: hidden;
+}
+
+.visual-line {
+    position: absolute;
+    top: 0;
+    right: 18%;
+    width: 1px;
+    height: 100%;
+    background: rgba(16, 16, 16, 0.16);
+}
+
+.visual-word {
+    position: absolute;
+    right: 0;
+    display: block;
+    padding: 10px 0;
+    color: transparent;
+    font-size: clamp(3rem, 8vw, 7rem);
+    font-weight: 700;
+    line-height: 1;
+    -webkit-text-stroke: 1px #101010;
+    animation: floatWord 6s ease-in-out infinite;
+}
+
+.visual-word:nth-child(2) {
+    top: 9%;
+}
+
+.visual-word:nth-child(3) {
+    top: 39%;
+    animation-delay: -2s;
+}
+
+.visual-word:nth-child(4) {
+    top: 69%;
+    animation-delay: -4s;
+}
+
+.portfolio-section {
+    width: min(1180px, calc(100% - 40px));
+    margin: 0 auto;
+    padding: 96px 0 120px;
+    border-top: 1px solid rgba(16, 16, 16, 0.18);
+}
+
+.section-heading {
+    display: grid;
+    grid-template-columns: 0.35fr 1fr;
+    gap: 32px;
+    margin-bottom: 30px;
+}
+
+.home h2 {
+    margin: 0;
+    color: #101010;
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    font-size: clamp(1.8rem, 4vw, 3.8rem);
+    line-height: 1.35;
+}
+
+.portfolio-list {
+    display: grid;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: portfolio;
+}
+
+.portfolio-list li {
+    border-top: 1px solid rgba(16, 16, 16, 0.16);
+}
+
+.portfolio-list li:last-child {
+    border-bottom: 1px solid rgba(16, 16, 16, 0.16);
+}
+
+.portfolio-list a {
+    position: relative;
+    display: grid;
+    grid-template-columns: 90px minmax(220px, 0.7fr) minmax(220px, 1fr);
+    align-items: center;
+    gap: 28px;
+    min-height: 132px;
+    padding: 28px 84px 28px 0;
+    color: #101010;
+    text-decoration: none;
+    transition: padding-left 0.25s ease, background 0.25s ease;
+}
+
+.portfolio-list a::after {
+    content: "";
+    position: absolute;
+    right: 24px;
+    width: 42px;
+    height: 42px;
+    border-top: 1px solid currentColor;
+    border-right: 1px solid currentColor;
+    transform: rotate(45deg);
+    transition: right 0.25s ease;
+}
+
+.portfolio-list a:hover,
+.portfolio-list a:focus-visible {
+    padding-left: 24px;
+    background: #fff;
+}
+
+.portfolio-list a:hover::after,
+.portfolio-list a:focus-visible::after {
+    right: 12px;
+}
+
+.item-number {
+    color: #637066;
+    font-size: 0.88rem;
+    font-weight: 700;
+}
+
+.item-title {
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    font-size: clamp(1.25rem, 2.2vw, 2rem);
+    font-weight: 700;
+    line-height: 1.45;
+}
+
+.item-text {
+    color: #575757;
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    line-height: 1.8;
+}
+
+@keyframes floatWord {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-18px);
+    }
+}
+
+@media (max-width: 820px) {
+    .site-header {
+        align-items: flex-start;
+        flex-direction: column;
+        width: min(100% - 28px, 1180px);
+    }
+
+    .site-nav {
+        width: 100%;
+        overflow-x: auto;
+        border-radius: 18px;
+    }
+
+    .site-nav a {
+        flex: 0 0 auto;
+    }
+
+    .hero {
+        grid-template-columns: 1fr;
+        width: min(100% - 28px, 1180px);
+        min-height: auto;
+        padding: 70px 0 56px;
+    }
+
+    .hero-visual {
+        min-height: 280px;
+        border-left: 0;
+        border-top: 1px solid rgba(16, 16, 16, 0.18);
+    }
+
+    .visual-word {
+        right: auto;
+        left: 0;
+    }
+
+    .portfolio-section {
+        width: min(100% - 28px, 1180px);
+        padding: 70px 0 88px;
+    }
+
+    .section-heading {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .portfolio-list a {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        min-height: 0;
+        padding: 26px 64px 26px 0;
+    }
+
+    .portfolio-list a:hover,
+    .portfolio-list a:focus-visible {
+        padding-left: 14px;
+    }
+}
+
+/* ========== article pages ========== */
+body.article {
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    color: #101010;
+    background:
+        linear-gradient(90deg, rgba(16, 16, 16, 0.05) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(16, 16, 16, 0.05) 1px, transparent 1px),
+        #f7f7f2;
+    background-size: 64px 64px;
+    font-family: "Raleway", "M PLUS Rounded 1c", sans-serif;
+    line-height: 1.8;
+}
+
+.article-frame {
+    width: min(980px, calc(100% - 40px));
+    margin: 0 auto;
+    padding: 78px 0 120px;
+}
+
+.article-frame > h1:first-child,
+.article-frame > header:first-child h1,
+.article-frame .hero-title:first-child,
+.article-frame .cool-heading:first-child {
+    margin: 0 0 42px;
+    color: #101010;
+    font-size: clamp(3rem, 7.5vw, 6.8rem);
+    font-weight: 700;
+    line-height: 0.98;
+    letter-spacing: 0;
+    text-align: left;
+    text-indent: 0;
+    text-transform: none;
+    background: none;
+    -webkit-text-fill-color: currentColor;
+    -webkit-background-clip: initial;
+    background-clip: initial;
+}
+
+.article-frame > header:first-child,
+.article-frame > section,
+.article-frame > main,
+.article-frame > div,
+.article-frame > article,
+.article-frame > nav,
+.article-frame > ul,
+.article-frame > ol,
+.article-frame > p,
+.article-frame > img,
+.article-frame > iframe,
+.article-frame > pre {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.article-frame h2 {
+    margin: 54px 0 18px;
+    padding-top: 26px;
+    border-top: 1px solid rgba(16, 16, 16, 0.16);
+    color: #101010;
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    font-size: clamp(1.35rem, 2.8vw, 2.25rem);
+    font-weight: 700;
+    line-height: 1.5;
+    text-align: left;
+}
+
+.article-frame h3 {
+    margin: 34px 0 12px;
+    color: #637066;
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.7;
+}
+
+.article-frame p,
+.article-frame div,
+.article-frame li,
+.article-frame dd,
+.article-frame td,
+.article-frame th {
+    font-family: "M PLUS Rounded 1c", sans-serif;
+}
+
+.article-frame p,
+.article-frame li {
+    color: #444;
+    font-size: 1rem;
+}
+
+.article-frame a {
+    color: #101010;
+    font-weight: 700;
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+}
+
+.article-frame a:hover,
+.article-frame a:focus-visible {
+    color: #637066;
+}
+
+.article-frame img,
+.article-frame video,
+.article-frame iframe {
+    max-width: 100%;
+    border: 1px solid rgba(16, 16, 16, 0.14);
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 18px 50px rgba(16, 16, 16, 0.08);
+}
+
+.article-frame img {
+    height: auto;
+}
+
+.article-frame iframe {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    height: auto;
+}
+
+.article-frame pre {
+    overflow-x: auto;
+    margin: 24px 0;
+    padding: 24px;
+    border: 1px solid rgba(16, 16, 16, 0.14);
+    border-radius: 8px;
+    background: #101010;
+    color: #f7f7f2;
+    box-shadow: 0 18px 50px rgba(16, 16, 16, 0.08);
+}
+
+.article-frame code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+.article-frame pre code {
+    background: transparent;
+    color: inherit;
+}
+
+.article-frame ul,
+.article-frame ol {
+    padding-left: 1.4em;
+}
+
+.article-frame .container,
+.article-frame .card,
+.article-frame .lead,
+.article-frame .section,
+.article-frame .content,
+.article-frame .hero {
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.article-frame .hero {
+    display: block;
+    width: auto;
+    min-height: 0;
+    padding: 48px 0;
+}
+
+.article-frame .container {
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.article-frame .card {
+    border: 1px solid rgba(16, 16, 16, 0.14);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.72);
+    box-shadow: 0 18px 50px rgba(16, 16, 16, 0.08);
+}
+
+.article-file-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 18px;
+    margin-top: 18px;
+    padding: 20px 26px;
+    border: 1px solid #101010;
+    color: #101010;
+    font-size: 1rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.25s ease, background 0.25s ease, transform 0.25s ease;
+}
+
+.article-file-link::after {
+    content: "";
+    width: 42px;
+    height: 1px;
+    background: currentColor;
+    transition: transform 0.25s ease;
+}
+
+.article-file-link:hover,
+.article-file-link:focus-visible {
+    color: #fff;
+    background: #101010;
+    transform: translateY(-2px);
+}
+
+.article-file-link:hover::after,
+.article-file-link:focus-visible::after {
+    transform: translateX(8px);
+}
+
+@media (max-width: 820px) {
+    .article-frame {
+        width: min(100% - 28px, 980px);
+        padding: 54px 0 88px;
+    }
+
+    .article-frame > h1:first-child,
+    .article-frame > header:first-child h1,
+    .article-frame .hero-title:first-child,
+    .article-frame .cool-heading:first-child {
+        margin-bottom: 32px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ========== course index pages ========== */
+body.course {
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    color: #101010;
+    background:
+        linear-gradient(90deg, rgba(16, 16, 16, 0.05) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(16, 16, 16, 0.05) 1px, transparent 1px),
+        #f7f7f2;
+    background-size: 64px 64px;
+    font-family: "Raleway", "M PLUS Rounded 1c", sans-serif;
+}
+
+.course-shell {
+    width: min(1180px, calc(100% - 40px));
+    margin: 0 auto;
+    padding: 72px 0 120px;
+}
+
+.course-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 220px;
+    gap: 48px;
+    align-items: end;
+    min-height: 48vh;
+    padding: 74px 0 64px;
+    border-bottom: 1px solid rgba(16, 16, 16, 0.18);
+}
+
+.course-hero h1 {
+    margin: 0;
+    max-width: 900px;
+    color: #101010;
+    font-size: clamp(3.4rem, 8vw, 7.6rem);
+    font-weight: 700;
+    line-height: 0.96;
+    text-indent: 0;
+}
+
+.course-summary {
+    max-width: 620px;
+    margin: 28px 0 0;
+    color: #4c4c4c;
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    font-size: 1.04rem;
+    line-height: 2;
+}
+
+.course-mark {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 1;
+    border: 1px solid rgba(16, 16, 16, 0.18);
+    border-radius: 50%;
+    color: transparent;
+    font-size: clamp(3rem, 7vw, 6rem);
+    font-weight: 700;
+    -webkit-text-stroke: 1px #101010;
+    animation: floatWord 6s ease-in-out infinite;
+}
+
+.work-section {
+    padding-top: 70px;
+}
+
+.work-group {
+    display: grid;
+    grid-template-columns: 0.36fr 1fr;
+    gap: 40px;
+    padding: 48px 0;
+    border-bottom: 1px solid rgba(16, 16, 16, 0.16);
+}
+
+.work-group:first-child {
+    padding-top: 0;
+}
+
+.work-group h2 {
+    margin: 0;
+    color: #637066;
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    line-height: 1.7;
+    text-transform: uppercase;
+}
+
+.work-list {
+    display: grid;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.work-list li {
+    border-top: 1px solid rgba(16, 16, 16, 0.13);
+}
+
+.work-list li:first-child {
+    border-top: 0;
+}
+
+.work-list a {
+    position: relative;
+    display: grid;
+    grid-template-columns: 74px minmax(0, 1fr);
+    align-items: center;
+    gap: 24px;
+    min-height: 94px;
+    padding: 22px 72px 22px 0;
+    color: #101010;
+    transition: padding-left 0.25s ease, background 0.25s ease;
+}
+
+.work-list a::after {
+    content: "";
+    position: absolute;
+    right: 20px;
+    width: 32px;
+    height: 32px;
+    border-top: 1px solid currentColor;
+    border-right: 1px solid currentColor;
+    transform: rotate(45deg);
+    transition: right 0.25s ease;
+}
+
+.work-list a:hover,
+.work-list a:focus-visible {
+    padding-left: 20px;
+    background: #fff;
+}
+
+.work-list a:hover::after,
+.work-list a:focus-visible::after {
+    right: 10px;
+}
+
+.work-number {
+    color: #637066;
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.work-title {
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    font-size: clamp(1.18rem, 2vw, 1.7rem);
+    font-weight: 700;
+    line-height: 1.5;
+}
+
+.empty-note {
+    margin: 0;
+    padding: 24px 0;
+    border-top: 1px solid rgba(16, 16, 16, 0.16);
+    color: #575757;
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    line-height: 1.8;
+}
+
+@media (max-width: 820px) {
+    .course-shell {
+        width: min(100% - 28px, 1180px);
+        padding: 48px 0 88px;
+    }
+
+    .course-hero {
+        grid-template-columns: 1fr;
+        gap: 34px;
+        min-height: 0;
+        padding: 56px 0 48px;
+    }
+
+    .course-mark {
+        width: min(220px, 62vw);
+    }
+
+    .work-group {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        padding: 38px 0;
+    }
+
+    .work-list a {
+        grid-template-columns: 56px minmax(0, 1fr);
+        gap: 16px;
+        min-height: 82px;
+        padding-right: 56px;
+    }
+}

@@ -2,11 +2,24 @@
 <html lang="jp">
 <head>
     <meta charset="UTF-8">
-    <title>html_1</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>html_1</title>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="shortcut icon" href="./images/xbp.ico">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
-<body>
+<body class="article">
+    <header class="site-header article-nav">
+        <a class="brand" href="../index.html" aria-label="XBP portfolio home">
+            <img src="./images/0_XBlogo.png" alt="XBP logo">
+            <span>XBP</span>
+        </a>
+        <nav class="site-nav" aria-label="Article navigation">
+            <a href="./index.html">Index</a>
+            <a href="../index.html">Home</a>
+        </nav>
+    </header>
+    <div class="article-frame">
     <logotohome>
     <a href="../index.html"><img src="./images/0_XBlogo.png" ></a>
     </logotohome>
@@ -29,13 +42,13 @@
         HPを見てわかるように、さまざまなページや文書にリンクが貼られり、画像、動画などにもリンクされ、ただの文字の集まりとは言えないですよね。
     </div>
     <div>
-        
+
         Markupというのは、文書の中に「意味」をつけていくことです。<br>
         タグという＜・・・＞印を使って文書に「意味」を埋め込んでいきます。<br>
         <img src="./images/tag.png">
 
     </div>
-    
+
 
 
     <h2>■タグ</h2>
@@ -43,11 +56,11 @@
         例えば下記のように記述した場合、文字は見出しとしての「意味」を持ち、それに適した文字の大きさになります。<br>
         <xmp>
             ■<h1>見出し１</h1>    大見出し
-    
+
             ■<h2>見出し2</h2>    中見出し
-    
+
             ■<h3>見出し3</h3>    小出し
-    
+
         </xmp>
         【見え方】
         <h1>見出し１</h1>
@@ -55,7 +68,7 @@
         <h3>見出し２</h3>
 
     </div>
-    
+
     <h2>■headとbody</h2>
     <div>
     htmlファイルはheadの部分とbodyの部分に分かれています。<br><br>
@@ -74,7 +87,7 @@
             明記せずにリンクを貼るとあたかも自分が作ったページのようになってしまいます。 </li>
             <li>情報倫理に関する<a href="https://www.kanagawa-u.ac.jp/sns/guideline/" target="_blank">神奈川大学のガイドライン</a>に沿って、情報公開をしてください。</li>
         </ul>
-    
+
     </div>
 
 
@@ -82,10 +95,11 @@
 
 
 
-    
+
 <br>
 <br>
 
 
+    </div>
 </body>
 </html>

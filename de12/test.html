@@ -1,12 +1,26 @@
 <!DOCTYPE html>
 <html lang="jp">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- ⑥↓タイトルを変えてみよう -->
     <title>奥さんのテストページ</title>
     <!-- ⑤スタイルシートの設定をしよう --> <link rel="stylesheet" href="./css/style.css">
     <!-- h1.htmlからある行をコピペしてくればOK -->
+    <link rel="stylesheet" href="../css/style.css">
 </head>
-<body>
+<body class="article">
+    <header class="site-header article-nav">
+        <a class="brand" href="../index.html" aria-label="XBP portfolio home">
+            <img src="./images/0_XBlogo.png" alt="XBP logo">
+            <span>XBP</span>
+        </a>
+        <nav class="site-nav" aria-label="Article navigation">
+            <a href="./index.html">Index</a>
+            <a href="../index.html">Home</a>
+        </nav>
+    </header>
+    <div class="article-frame">
     <h1>見出し</h1>
     <!-- 塊ごとにdivタグで区切るようにしましょう。 -->
     <div>
@@ -30,7 +44,8 @@
          <a href="https://www.yahoo.co.jp/" target="_blank">Yahoo</a><br>
          <a href="./files/test.pdf" target="_blank">pdfファイル</a>
     </div>
-    <div class="video"><iframe width="560" height="315" src="<iframe width="414" height="736" src="https://www.youtube.com/embed/l8Zu0wM7dG0" title="2025年10月31日" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+    <div class="video"><iframe width="414" height="736" src="https://www.youtube.com/embed/l8Zu0wM7dG0" title="2025年10月31日" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
 
+    </div>
 </body>
 </html>

@@ -1,29 +1,80 @@
 <!DOCTYPE html>
-<html lang="jp">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>XBP_HPsample</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XBP Portfolio</title>
     <link rel="stylesheet" href="./css/style.css">
 </head>
-<body>
-    <logotohome>
-    <a href="./index.html"><img src="./images/0_XBlogo.png" alt=""></a>
-    </logotohome>
-    <h1>XBP</h1>
-        <h2>奥さんのXBPポートフォリオ一覧</h2>
-        <!-- このようにするとコードとして認識されない。（メモができる）-->
-        <!--番号付きのリスト-->
-        <ol>
-            <li><a href="./de12/index.html">デザイン演習Ⅰ・Ⅱ</a></li>
-            <li><a href="./digi_fab/index.html">デジタルファブリケーション</a></li>
-            <li><a href="./de34/index.html">デザイン演習Ⅲ・Ⅳ</a></li>
-            <li><a href="./de56/index.html">デザイン演習Ⅴ・Ⅵ</a></li>
-        </ol>
+<body class="home">
+    <header class="site-header">
+        <a class="brand" href="./index.html" aria-label="XBP portfolio home">
+            <img src="./images/0_XBlogo.png" alt="XBP logo">
+            <span>XBP</span>
+        </a>
+        <nav class="site-nav" aria-label="Portfolio navigation">
+            <a href="./de12/index.html">Design I-II</a>
+            <a href="./digi_fab/index.html">Fab</a>
+            <a href="./de34/index.html">Design III-IV</a>
+            <a href="./de56/index.html">Design V-VI</a>
+        </nav>
+    </header>
 
-            
-        <br>
-        <br>
+    <main>
+        <section class="hero">
+            <div class="hero-copy">
+                <p class="eyebrow">X Business Program Portfolio</p>
+                <h1>学びを、形にする。</h1>
+                <p class="lead">
+                    デザイン演習、デジタルファブリケーション、プロジェクトの記録をまとめたポートフォリオです。
+                </p>
+                <a class="primary-link" href="#portfolio">Portfolio</a>
+            </div>
+            <div class="hero-visual" aria-hidden="true">
+                <span class="visual-line"></span>
+                <span class="visual-word">Think</span>
+                <span class="visual-word">Make</span>
+                <span class="visual-word">Share</span>
+            </div>
+        </section>
 
+        <section class="portfolio-section" id="portfolio" aria-labelledby="portfolio-title">
+            <div class="section-heading">
+                <p class="eyebrow">Works</p>
+                <h2 id="portfolio-title">奥さんのXBPポートフォリオ一覧</h2>
+            </div>
 
+            <ol class="portfolio-list">
+                <li>
+                    <a href="./de12/index.html">
+                        <span class="item-number">01</span>
+                        <span class="item-title">デザイン演習 I・II</span>
+                        <span class="item-text">観察、発想、プロトタイピングの記録</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./digi_fab/index.html">
+                        <span class="item-number">02</span>
+                        <span class="item-title">デジタルファブリケーション</span>
+                        <span class="item-text">つくりながら考えた制作プロセス</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./de34/index.html">
+                        <span class="item-number">03</span>
+                        <span class="item-title">デザイン演習 III・IV</span>
+                        <span class="item-text">調査と企画をつなげるアウトプット</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./de56/index.html">
+                        <span class="item-number">04</span>
+                        <span class="item-title">デザイン演習 V・VI</span>
+                        <span class="item-text">実践に向けたプロジェクトアーカイブ</span>
+                    </a>
+                </li>
+            </ol>
+        </section>
+    </main>
 </body>
 </html>
