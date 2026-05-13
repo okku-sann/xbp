@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>奥さん第4回</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body class="article">
+    <header class="site-header article-nav">
+        <a class="brand" href="../index.html" aria-label="XBP portfolio home">
+            <img src="../images/0_XBlogo.png" alt="XBP logo">
+            <span>XBP</span>
+        </a>
+        <nav class="site-nav" aria-label="Article navigation">
+            <a href="./index.html">Index</a>
+            <a href="../index.html">Home</a>
+        </nav>
+    </header>
+
+    <div class="article-frame">
+        <h1>家計簿<br>
+            &未来貯金
+        </h1>
+
+        <section class="lead">
+            <p>
+                今回は、毎月のお金の使い方を記録しながら、将来どのくらい貯金できるかを確認できる
+                「家計簿＋未来貯金シミュレーター」を制作した。
+                家計簿として使うだけでなく、記録した支出をそのまま貯金シミュレーションに反映できる点が特徴である。
+            </p>
+        </section>
+
+        <section class="section">
+            <h2>アプリの概要</h2>
+            <p>
+                このアプリでは、月収、毎月の支出、現在の貯金、シミュレーションしたい年数を入力すると、
+                将来の貯金額を計算できる。
+            </p>
+            <p>
+                また、カレンダー家計簿の機能を使って、日ごとの支出を登録できるようにした。
+                登録した月の支出合計は、シミュレーションの「毎月の支出」として使うことができるため、
+                実際の生活に近い形で将来の貯金額を考えられる。
+            </p>
+        </section>
+
+        <section class="section">
+            <h2>主な特徴</h2>
+            <ul>
+                <li>カレンダー形式で支出を管理できる</li>
+                <li>食費、交通費、娯楽費など、カテゴリ別に支出を登録できる</li>
+                <li>登録した月ごとの支出合計を自動で計算できる</li>
+                <li>Chart.jsを使って、貯金の推移をグラフで表示できる</li>
+                <li>OpenAI APIを使って、入力内容に合わせたAIアドバイスを表示できる</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>使い方</h2>
+            <ol>
+                <li>トップ画面で月収・支出・現在の貯金・年数を入力する</li>
+                <li>カレンダー家計簿で、日ごとの支出とカテゴリを登録する</li>
+                <li>家計簿の内容を反映したい場合は、「家計簿の月合計を使う」にチェックを入れる</li>
+                <li>「結果を見る」を押すと、将来の貯金額と貯金推移のグラフが表示される</li>
+            </ol>
+        </section>
+         <section class="section">
+            <h2>実際の動画</h2>
+        <iframe width="1020" height="555" src="https://www.youtube.com/embed/DP24NJAJBb0" title="お金管理アプリ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </section>
+
+        <section class="section">
+            <h2>工夫した点</h2>
+            <ul>
+                <li>家計簿とシミュレーションを連動させ、入力した支出データを結果に反映できるようにした点</li>
+                <li>数字だけでなくグラフでも結果を表示し、貯金の変化を見やすくした点</li>
+                <li>AIアドバイスを表示することで、支出を見直すための改善案を確認できるようにした点</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>今後改善したい点</h2>
+            <ul>
+                <li>データベースを使って、支出データを保存できるようにする</li>
+                <li>登録した支出の削除・編集機能を追加する</li>
+                <li>カテゴリ別の支出割合が分かる円グラフを追加する</li>
+            </ul>
+        </section>
+
+        <section class="note">
+            <p>
+                この制作を通して、Webアプリでは計算機能だけでなく、入力したデータをどのように見やすく表示するかも重要だと感じた。
+                今後は保存機能や編集機能を追加し、より実用的な家計管理アプリに近づけたい。
+            </p>
+        </section>
+    </div>
+
+    <script src="../js/ui.js" defer></script>
+</body>
+</html>
