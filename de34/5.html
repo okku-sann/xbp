@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>データベースまとめ</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body class="db-page">
+    <header class="site-header article-nav db-header">
+        <a class="brand" href="../index.html" aria-label="XBP portfolio home">
+            <img src="../images/0_XBlogo.png" alt="XBP logo">
+            <span>XBP</span>
+        </a>
+        <nav class="site-nav" aria-label="Article navigation">
+            <a href="./index.html">Index</a>
+            <a href="../index.html">Home</a>
+        </nav>
+    </header>
+
+    <main class="db-main">
+        <!-- ページの導入部分。企業サイトのファーストビューを意識した見出しにする -->
+        <section class="db-hero" id="top">
+            <div class="db-hero__content">
+                <p class="db-label">Database Learning Guide</p>
+                <h1>データベースまとめ</h1>
+                <p class="db-subtitle">テーブル・レコード・フィールド・クエリを理解しよう</p>
+                <p class="db-hero__text">
+                    Spotifyのようなサービスを例に、データがどのように整理され、つながり、必要な情報として取り出されるのかを学びます。
+                </p>
+            </div>
+            <div class="db-hero__panel" aria-label="Spotify database example">
+                <span class="db-dot"></span>
+                <h2>Spotify Data</h2>
+                <ul>
+                    <li>曲情報</li>
+                    <li>アーティスト情報</li>
+                    <li>ユーザー情報</li>
+                    <li>再生履歴</li>
+                </ul>
+                <p>バラバラではなく関連づけて管理する</p>
+            </div>
+        </section>
+
+        <!-- ページ内で迷わないようにする小さなナビゲーション -->
+        <nav class="db-local-nav" aria-label="ページ内メニュー">
+            <a href="#about">データベースとは</a>
+            <a href="#terms">基本用語</a>
+            <a href="#keys">キー</a>
+            <a href="#query">クエリ</a>
+            <a href="#spotify">Spotify例</a>
+        </nav>
+
+        <section class="db-section" id="about">
+            <div class="db-section__heading">
+                <p class="db-label">01 / About</p>
+                <h2>データベースとは</h2>
+            </div>
+            <div class="db-card db-card--wide">
+                <p class="db-lead">データを整理し、保存・管理する仕組み</p>
+                <p>
+                    たとえばSpotifyでは、曲、アーティスト、ユーザー、再生履歴など多くのデータを扱います。
+                    これらをまとめて保存するだけではなく、必要なときにすぐ探せるように整理しておくことが重要です。
+                </p>
+                <div class="db-chip-list" aria-label="Spotifyで管理される情報">
+                    <span>曲情報</span>
+                    <span>アーティスト情報</span>
+                    <span>ユーザー情報</span>
+                    <span>再生履歴</span>
+                </div>
+                <p class="db-point">バラバラではなく関連づけて管理する</p>
+            </div>
+        </section>
+
+        <section class="db-section" id="terms">
+            <div class="db-section__heading">
+                <p class="db-label">02 / Basic Terms</p>
+                <h2>基本用語</h2>
+            </div>
+
+            <div class="db-grid">
+                <article class="db-card">
+                    <h3>テーブル</h3>
+                    <p>データを表形式で管理する場所</p>
+                    <div class="db-table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ユーザーID</th>
+                                    <th>名前</th>
+                                    <th>年齢</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>001</td>
+                                    <td>田中</td>
+                                    <td>20</td>
+                                </tr>
+                                <tr>
+                                    <td>002</td>
+                                    <td>佐藤</td>
+                                    <td>21</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="db-note">Excelのシートのようなイメージ</p>
+                </article>
+
+                <article class="db-card">
+                    <h3>レコード</h3>
+                    <p>横1行分のデータ</p>
+                    <p>
+                        例として「001 | 田中 | 20」という1行は、1人のユーザーを表すレコードです。
+                    </p>
+                </article>
+
+                <article class="db-card">
+                    <h3>フィールド</h3>
+                    <p>列（項目）のこと</p>
+                    <ul class="db-list">
+                        <li>ユーザーID</li>
+                        <li>名前</li>
+                        <li>年齢</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <section class="db-section" id="keys">
+            <div class="db-section__heading">
+                <p class="db-label">03 / Keys</p>
+                <h2>主キーと外部キー</h2>
+            </div>
+
+            <div class="db-grid db-grid--two">
+                <article class="db-card">
+                    <h3>主キー</h3>
+                    <p>データを区別するための重複しない番号</p>
+                    <h4>目的</h4>
+                    <ul class="db-list">
+                        <li>誰のデータか判別</li>
+                        <li>重複防止</li>
+                    </ul>
+                </article>
+
+                <article class="db-card">
+                    <h3>外部キー</h3>
+                    <p>他のテーブルをつなぐための項目</p>
+                    <div class="db-table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>履歴ID</th>
+                                    <th>ユーザーID</th>
+                                    <th>曲ID</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>001</td>
+                                    <td>S001</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="db-section" id="query">
+            <div class="db-section__heading">
+                <p class="db-label">04 / Query</p>
+                <h2>クエリとは</h2>
+            </div>
+
+            <div class="db-card db-card--wide">
+                <p class="db-lead">データベースへの命令文</p>
+                <p class="db-example-title">例：YOASOBIの曲を表示</p>
+                <pre class="db-code"><code>SELECT *
+FROM songs
+WHERE artist='YOASOBI';</code></pre>
+                <div class="db-meaning">
+                    <div><strong>SELECT</strong><span>取り出す</span></div>
+                    <div><strong>FROM</strong><span>どこから</span></div>
+                    <div><strong>WHERE</strong><span>条件</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="db-section" id="spotify">
+            <div class="db-section__heading">
+                <p class="db-label">05 / Service Example</p>
+                <h2>Spotifyデータベース例</h2>
+            </div>
+
+            <div class="db-service">
+                <article class="db-card db-service__card">
+                    <span>1</span>
+                    <h3>ユーザー</h3>
+                </article>
+                <article class="db-card db-service__card">
+                    <span>2</span>
+                    <h3>曲</h3>
+                </article>
+                <article class="db-card db-service__card">
+                    <span>3</span>
+                    <h3>アーティスト</h3>
+                </article>
+                <article class="db-card db-service__card">
+                    <span>4</span>
+                    <h3>プレイリスト</h3>
+                </article>
+                <article class="db-card db-service__card">
+                    <span>5</span>
+                    <h3>再生履歴</h3>
+                </article>
+                <article class="db-card db-service__card">
+                    <span>6</span>
+                    <h3>広告</h3>
+                </article>
+                <article class="db-card db-service__card">
+                    <span>7</span>
+                    <h3>Spotify Jam</h3>
+                </article>
+            </div>
+
+            <div class="db-grid db-grid--two">
+                <article class="db-card">
+                    <h3>おすすめ曲</h3>
+                    <p>過去の再生履歴からおすすめ表示</p>
+                </article>
+                <article class="db-card">
+                    <h3>検索</h3>
+                    <p>「夜に駆ける」を検索</p>
+                </article>
+                <article class="db-card">
+                    <h3>広告</h3>
+                    <p>無料会員のみ表示</p>
+                </article>
+                <article class="db-card">
+                    <h3>Spotify Jam</h3>
+                    <p>参加者の曲を同期</p>
+                </article>
+            </div>
+            <a class="article-file-link" href="./files/Spotify (1).pptx" target="_blank">Spotifyの例</a>
+        </section>
+
+        <section class="db-summary" aria-label="覚え方">
+            <p>最後に覚えよう</p>
+            <div class="db-summary__grid">
+                <strong>テーブル＝表</strong>
+                <strong>レコード＝横1行</strong>
+                <strong>フィールド＝縦列</strong>
+                <strong>クエリ＝命令文</strong>
+            </div>
+        </section>
+    </main>
+
+    <!-- JS: ページ内リンクを押したとき、選択中のメニューを分かりやすくする -->
+    <script>
+        const navLinks = document.querySelectorAll(".db-local-nav a");
+
+        navLinks.forEach((link) => {
+            link.addEventListener("click", () => {
+                navLinks.forEach((item) => item.classList.remove("is-active"));
+                link.classList.add("is-active");
+            });
+        });
+    </script>
+    <script src="../js/ui.js" defer></script>
+</body>
+</html>
